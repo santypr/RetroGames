@@ -7,7 +7,7 @@ import {
 } from '../constants';
 
 export const DefaultRouter = () => {
-    const routeNotMappedStyles: CSSProperties = { color: 'darkgray', padding: '32px', fontSize: '20px' };
+    // const routeNotMappedStyles: CSSProperties = { color: 'darkgray', padding: '32px', fontSize: '20px' };
 
     return useRoutes([
         {

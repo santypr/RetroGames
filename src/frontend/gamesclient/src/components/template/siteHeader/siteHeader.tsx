@@ -1,5 +1,5 @@
 import { useTheme } from 'react-jss';
-import { SiteActions } from './siteActions/siteActions';
+// import { SiteActions } from './siteActions/siteActions';
 import { SiteHeaderStyles } from './siteHeader.jss';
 
 export const SiteHeader = () => {

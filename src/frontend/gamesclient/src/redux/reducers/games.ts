@@ -1,18 +1,18 @@
-import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { IGame } from "../../models/IGame";
 
-const ApiURL = process.env.REACT_APP_API_URL;
+// const ApiURL = process.env.REACT_APP_API_URL;
 
 export const gamesAdapter = createEntityAdapter<IGame>({
     selectId: (game) => game.id!,
     sortComparer: (a, b) => a.title!.localeCompare(b.title!)
 })
 
-const setControlProps = (state: any, isLoading: boolean, hasErrors: boolean, errorMessage: string) => {
-    state.isLoading = isLoading;
-    state.hasErrors = hasErrors;
-    state.errorMessage = errorMessage;
-}
+// const setControlProps = (state: any, isLoading: boolean, hasErrors: boolean, errorMessage: string) => {
+//     state.isLoading = isLoading;
+//     state.hasErrors = hasErrors;
+//     state.errorMessage = errorMessage;
+// }
 
 // export const fetchgames = createAsyncThunk(
 //     'games/list',

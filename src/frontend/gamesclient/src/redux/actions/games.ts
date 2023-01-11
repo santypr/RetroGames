@@ -1,5 +1,5 @@
-import { createAction, createAsyncThunk, PrepareAction } from "@reduxjs/toolkit";
-import { GamesApi } from "../../api/games";
+import { createAction } from "@reduxjs/toolkit";
+// import { GamesApi } from "../../api/games";
 // import { useGetPeopleQuery } from "../../api/people";
 import { gamesReceived, setError, setLoading } from "../reducers/games";
 import { AppDispatch, AppThunk } from "../store"
