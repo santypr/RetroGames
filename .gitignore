@@ -114,3 +114,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/src/backend/.vs/Lemoncode.Azure/FileContentIndex/e1022514-3718-4b16-951f-2b8e488d2d36.vsidx
