@@ -69,6 +69,3 @@ Los pasos para realizar el despliegue son:
     - SQL Server Database
     - Cuenta de almacenamiento de Azure
 - Para finalizar, en la parte superior de la ventana, seleccionamos **Publicar** y esperamos el resultado. Es importante atender a la ventana de depuración del despliegue que se abre en la parte baja de Visual Studio.
-
-### Despliegue de aplicación React
-- El despliegue de la aplicación de React lo realizaremos a una Azure Static Web App
