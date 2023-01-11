@@ -16,6 +16,16 @@ namespace Lemoncode.Azure.Api.Controllers
             this.context = context;
         }
 
+
+
+        // GET: api/Games
+        [HttpGet("healthcheck")]
+        public async Task<ActionResult<IEnumerable<Game>>> HealthCheck()
+        {
+            return Ok("Service is running and healthy");
+        }
+
+
         // GET: api/Games
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGame()
