@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && env-cmd -e LOCAL npm run build",
+    "build": "react-scripts build",
     "slocal": "env-cmd -e LOCAL npm run start",
     "blocal": "env-cmd -e LOCAL npm run build",
     "spro": "env-cmd -e PRO npm run start",
