@@ -30,9 +30,7 @@ jobs:
           app_location: "/src/frontend/gamesclient" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
-          app_build_command: |
-                              npm install -g env-cmd
-                              env-cmd -e PRO npm run build
+          app_build_command: env-cmd -e PRO npm run build
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
