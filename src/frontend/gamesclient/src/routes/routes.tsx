@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+// import { CSSProperties } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { GamesContainer } from '../components/games/games';
 import { Template } from '../components/template/template';
