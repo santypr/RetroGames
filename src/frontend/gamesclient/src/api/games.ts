@@ -2,7 +2,7 @@ import { ApiMethods } from '../constants/apiMethods';
 import { IGame } from '../models/IGame';
 import { apiFetch } from '../services/apiClient';
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = 'https://lemoncode-azure-api.azurewebsites.net/api/';
 
 export class GamesApi {
     async get(): Promise<IGame[]> {
