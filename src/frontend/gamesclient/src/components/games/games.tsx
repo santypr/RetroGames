@@ -30,7 +30,7 @@ export const GamesContainer = () => {
                     {games.map((item: IGame, index: number) => {
                         return (
                             <>
-                                <Game game={item} />
+                                <Game key={index} game={item} />
                             </>
                         )
                     })}
