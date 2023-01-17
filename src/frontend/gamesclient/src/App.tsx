@@ -1,6 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import { Template } from './components/template/template';
 import { DefaultRouter } from './routes/routes';
 
 function App() {

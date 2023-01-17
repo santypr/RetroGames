@@ -360,5 +360,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+<<<<<<< HEAD
 src/frontend/casviapp/.vscode/settings.json
+=======
+src/frontend/gamesclient/.vscode/settings.json
+>>>>>>> baad5a761b0a6366acc6c2f0e290f568cae20a24
 .vscode/settings.json

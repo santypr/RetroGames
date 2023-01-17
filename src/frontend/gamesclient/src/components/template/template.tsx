@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "react-jss";
 import { defaultTheme } from "../../theme/themes";
 import { SiteHeader } from "./siteHeader/siteHeader";
-import { SiteNav } from "./siteNav/siteNav";
+// import { SiteNav } from "./siteNav/siteNav";
 
 interface TemplateProps {
     featureId: string;
@@ -12,12 +12,17 @@ interface TemplateProps {
 export const Template = (props: TemplateProps & any) => {
     const [currentTheme, setCurrentTheme] = React.useState(defaultTheme);
 
-    function changeTheme(themeValue: string) {
-        if (themeValue === "RETROGAMES-THEME")
-            setCurrentTheme(defaultTheme);
-        else
-            setCurrentTheme(defaultTheme);
-    }
+    // function changeTheme(themeValue: string) {
+    //     if (themeValue === "RETROGAMES-THEME")
+    //         setCurrentTheme(defaultTheme);
+    //     else
+    //         setCurrentTheme(defaultTheme);
+    // }
+
+    useEffect(() => {
+        setCurrentTheme(defaultTheme);
+    }, [])
+
     return (
         <>
             <ThemeProvider theme={currentTheme}>

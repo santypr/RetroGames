@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTheme } from "react-jss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { IGame } from "../../models/IGame";
 import { getGamesAction } from "../../redux/actions/games";
 import { useAppDispatch } from "../../redux/hooks";
@@ -17,7 +17,7 @@ export const GamesContainer = () => {
 
     useEffect(() => {
         dispatch(getGamesAction());
-    }, [])
+    }, [dispatch])
 
     return (
         <>

@@ -30,6 +30,8 @@
     "build": "react-scripts build",
     "slocal": "env-cmd -e LOCAL npm run start",
     "blocal": "env-cmd -e LOCAL npm run build",
+    "spro": "env-cmd -e PRO npm run start",
+    "bpro": "env-cmd -e PRO npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+// import { CSSProperties } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { GamesContainer } from '../components/games/games';
 import { Template } from '../components/template/template';
@@ -7,7 +7,7 @@ import {
 } from '../constants';
 
 export const DefaultRouter = () => {
-    const routeNotMappedStyles: CSSProperties = { color: 'darkgray', padding: '32px', fontSize: '20px' };
+    // const routeNotMappedStyles: CSSProperties = { color: 'darkgray', padding: '32px', fontSize: '20px' };
 
     return useRoutes([
         {
