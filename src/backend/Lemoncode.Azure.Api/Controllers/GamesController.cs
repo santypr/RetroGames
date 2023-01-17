@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs.Specialized;
+using Azure.Storage.Sas;
 using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Api.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Azure;
+using NuGet.Protocol;
 
 namespace Lemoncode.Azure.Api.Controllers
 {
@@ -16,8 +22,6 @@ namespace Lemoncode.Azure.Api.Controllers
             this.context = context;
         }
 
-
-
         // GET: api/Games
         [HttpGet("healthcheck")]
         public async Task<ActionResult<IEnumerable<Game>>> HealthCheck()
@@ -25,12 +29,11 @@ namespace Lemoncode.Azure.Api.Controllers
             return Ok("Service is running and healthy");
         }
 
-
         // GET: api/Games
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetGame()
         {
-            return await context.Game.ToListAsync();
+            return await context.Game.Include(i => i.Screenshots).ToListAsync();
         }
 
         // GET: api/Games/5
@@ -108,6 +111,84 @@ namespace Lemoncode.Azure.Api.Controllers
         private bool GameExists(int id)
         {
             return context.Game.Any(e => e.Id == id);
+        }
+
+        [HttpPost("{id}/Screenshots/Upload")]
+        public async Task<IActionResult> UploadFile([FromRoute] int id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            try
+            {
+                var storageUrl = "https://lemoncodeazurestg.blob.core.windows.net/";
+                var blobName = $"sf2/{file.FileName}";
+                var containerName = "screenshots";
+                var connectionString = "DefaultEndpointsProtocol=https;AccountName=lemoncodeazurestg;AccountKey=h6jIAW8j0p4oBvs9Eh71+0x4bqsfSP+WBYWRIMuoiBLjnAJJYQ5cmzffHy9FpgW/HN2mGB1BzeiQ+ASt4QQ88Q==;EndpointSuffix=core.windows.net";
+                BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
+                await container.CreateIfNotExistsAsync();
+                BlobClient blobClient = container.GetBlobClient(blobName);
+                BlobContentInfo blobInfo = null;
+                bool fileExists = false;
+
+                if (await blobClient.ExistsAsync())
+                {
+                    fileExists = true;
+                }
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(memoryStream);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+
+                    if (!fileExists)
+                    {
+                        blobInfo = await blobClient.UploadAsync(memoryStream);
+                    }
+                    //return Conflict("El fichero ya existe");
+                }
+
+                BlobSasBuilder sasBuilder = new BlobSasBuilder()
+                {
+                    BlobContainerName = blobClient.GetParentBlobContainerClient().Name,
+                    BlobName = blobClient.Name,
+                    Resource = "b",
+                    ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
+                };
+                sasBuilder.SetPermissions(BlobSasPermissions.Read |
+                        BlobSasPermissions.Write);
+                var blobSasUri = blobClient.GenerateSasUri(sasBuilder);
+                var game = context.Game.Include(i => i.Screenshots)
+                    .FirstOrDefault(i => i.Id == id);
+                context.Game.Add(game);
+
+                if (!fileExists)
+                {
+                    if (game.Screenshots == null)
+                    {
+                        game.Screenshots = new List<Screenshot>();
+                    }
+                    game.Screenshots.Add(
+                        new Screenshot { 
+                            Url = $"{storageUrl}screenshots/{blobName}" ,
+                            Filename = file.FileName
+                        });
+                }
+                else
+                {
+                    var screenshot = game.Screenshots.FirstOrDefault(i => i.Filename == file.FileName);
+                    screenshot.Url = blobSasUri.AbsoluteUri;
+                }
+
+                context.Game.Update(game);
+                context.SaveChanges();
+                return Ok(blobSasUri);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
 }

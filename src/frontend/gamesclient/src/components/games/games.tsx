@@ -5,7 +5,7 @@ import { IGame } from "../../models/IGame";
 import { getGamesAction } from "../../redux/actions/games";
 import { useAppDispatch } from "../../redux/hooks";
 import { gamesSelector, getGamesSelector } from "../../redux/selectors/games";
-import { Game } from "./game/game";
+import { GameItem } from "./gameItem/gameItem";
 import { GamesContainerStyles } from "./games.jss";
 
 export const GamesContainer = () => {
@@ -29,9 +29,7 @@ export const GamesContainer = () => {
                 <div className={styles.container}>
                     {games.map((item: IGame, index: number) => {
                         return (
-                            <>
-                                <Game key={index} game={item} />
-                            </>
+                            <GameItem key={index} game={item} />
                         )
                     })}
                 </div>

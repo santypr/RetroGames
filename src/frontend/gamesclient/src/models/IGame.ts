@@ -9,4 +9,12 @@ export interface IGame {
     ageGroup?: string,
     playability?: number,
     rating?: number
+    screenshots: IScreenshot[]
+}
+
+export interface IScreenshot {
+    id?: number,
+    url?: string,
+    gameid?: number,
+    filename?: string
 }
