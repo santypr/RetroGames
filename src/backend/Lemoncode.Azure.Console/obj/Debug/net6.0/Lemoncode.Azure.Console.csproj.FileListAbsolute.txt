@@ -47,3 +47,4 @@ C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Console\obj\Debug\net
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Console\obj\Debug\net6.0\Lemoncode.Azure.Console.pdb
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Console\obj\Debug\net6.0\Lemoncode.Azure.Console.genruntimeconfig.cache
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Console\obj\Debug\net6.0\ref\Lemoncode.Azure.Console.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Console\bin\Debug\net6.0\Settings.job
