@@ -366,3 +366,5 @@ src/frontend/casviapp/.vscode/settings.json
 src/frontend/gamesclient/.vscode/settings.json
 >>>>>>> baad5a761b0a6366acc6c2f0e290f568cae20a24
 .vscode/settings.json
+/src/backend/.vs/Lemoncode.Azure/v17/.suo
+/src/backend/Lemoncode.Azure.Console/obj/Debug/net6.0/Lemoncode.Azure.Console.assets.cache
