@@ -42,5 +42,20 @@ namespace Lemoncode.Azure.Fx
 
             return "Metiendo un mensaje en la cola";
         }
+
+
+        [Function("ResizeScreenshot")]
+        [BlobOutput("screenshots/thumbnails/{name}.txt")]
+        public static string ResizeScreenshot(
+            [BlobTrigger("screenshot/{name}.gif", Connection = "AzureWebJobsStorage")] string myTriggerBlob,
+            FunctionContext context,
+            string name)
+        {
+            var logger = context.GetLogger("BlobFunction");
+            logger.LogInformation($"Triggered Item = {myTriggerBlob}");
+
+            return "Metiendo un mensaje en la cola";
+        }
+
     }
 }

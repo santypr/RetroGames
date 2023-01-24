@@ -11,6 +11,13 @@ C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Humanizer.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\MessagePack.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\MessagePack.Annotations.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.ApplicationInsights.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.ApplicationInsights.AspNetCore.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AI.DependencyCollector.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AI.EventCounterCollector.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AI.PerfCounterCollector.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AI.WindowsServer.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AI.ServerTelemetryChannel.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.AspNetCore.Razor.Language.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Build.dll
@@ -38,6 +45,9 @@ C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Caching.Memory.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.DiagnosticAdapter.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.Logging.ApplicationInsights.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Extensions.PlatformAbstractions.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Identity.Client.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
@@ -74,6 +84,7 @@ C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.Composition.Runtime.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.Composition.TypedParts.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.Diagnostics.PerformanceCounter.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.Drawing.Common.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\System.IO.Hashing.dll
@@ -246,6 +257,7 @@ C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Dev\Samples\Lemoncode.Azure\src\backend\Lemoncode.Azure.Api\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll

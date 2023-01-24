@@ -12,6 +12,7 @@ export const GameDetailsStyles = createUseStyles((theme: any) => ({
     },
     screenshots: {
         display: "flex",
+        flexFlow: "row",
         height: "100px",
         columnGap: "10px",
         padding: "10px",
