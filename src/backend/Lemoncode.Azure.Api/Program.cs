@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Lemoncode.Azure.Api.Data;
-using Microsoft.AspNetCore.Cors.Infrastructure;
+using Lemoncode.Azure.Models.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDBContext>(options =>
@@ -13,14 +13,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var corsSettings = builder.Configuration.GetSection(nameof(CorsOptions)).Get<Lemoncode.Azure.Models.Configuration.CorsOptions>();
-builder.Services.AddCors(opt =>
+var corsPolicyName = "EnableCors";
+var corsSettings = builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.CorsOptions)).Get<Lemoncode.Azure.Models.Configuration.CorsOptions>();
+builder.Services.AddCors(options =>
 {
-    opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins(corsSettings?.Origins ?? new[] { "*" });
-    });
+    options.AddPolicy(name: corsPolicyName, 
+                      policy =>
+                        {
+                            policy.AllowAnyHeader()
+                                  .AllowAnyMethod()
+                                  .WithOrigins(corsSettings?.Origins ?? new[] { "*" });
+                        });
 });
+builder.Services.AddOptions();
+builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
 var app = builder.Build();
 
@@ -31,7 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CorsPolicy");
+app.UseCors(corsPolicyName);
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

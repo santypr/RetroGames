@@ -15,7 +15,7 @@ export const Uploader = (props: IUploaderProps) => {
     event.preventDefault()
     const url = process.env.REACT_APP_API_URL + "Games/" + props.id + "/Screenshots/Upload";
     const formData = new FormData();
-    formData.append('file', file!);
+    formData.append('formFile', file!);
     formData.append('fileName', file!.name);
     const config = {
       headers: {

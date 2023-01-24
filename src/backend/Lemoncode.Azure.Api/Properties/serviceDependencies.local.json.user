@@ -3,7 +3,22 @@
     "mssql1": {
       "restored": true,
       "restoreTime": "2022-12-13T20:36:13.5794064Z"
+    },
+    "appInsights1": {
+      "restored": true,
+      "restoreTime": "2023-01-24T04:53:38.8263922Z"
     }
   },
-  "parameters": {}
+  "parameters": {
+    "appInsights1.resourceGroupName": {
+      "Name": "appInsights1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "Lemoncode"
+    },
+    "appInsights1.subscriptionId": {
+      "Name": "appInsights1.subscriptionId",
+      "Type": "subscription",
+      "Value": "4a39c76e-4c39-4c49-b263-62e46d4311f0"
+    }
+  }
 }
