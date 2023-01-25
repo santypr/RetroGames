@@ -55,7 +55,7 @@ namespace Lemoncode.Azure.Fx
         [Function("ResizeScreenshot")]
         [BlobOutput("screenshots/{folder}/thumbnails/{name}")]
         public static Stream ResizeScreenshot(
-            [BlobTrigger("screenshot/{folder}/{name}", Connection = "AzureWebJobsStorage")] string image,
+            [BlobTrigger("screenshots/{folder}/{name}", Connection = "AzureWebJobsStorage")] string image,
             FunctionContext context,
             string name)
         {

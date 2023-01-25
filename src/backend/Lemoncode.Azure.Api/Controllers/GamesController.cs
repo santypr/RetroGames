@@ -5,6 +5,7 @@ using Azure.Storage.Sas;
 using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Api.Helpers;
 using Lemoncode.Azure.Api.Models;
+using Lemoncode.Azure.Models;
 using Lemoncode.Azure.Models.Configuration;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
