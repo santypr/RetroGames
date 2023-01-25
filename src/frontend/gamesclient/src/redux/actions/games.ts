@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 // import { GamesApi } from "../../api/games";
 // import { useGetPeopleQuery } from "../../api/people";
-import { gamesReceived, setError, setLoading } from "../reducers/games";
+import { gamesReceived, gameReceived, setError, setLoading } from "../reducers/games";
 import { AppDispatch, AppThunk } from "../store"
 
 const ApiURL = process.env.REACT_APP_API_URL;
@@ -51,3 +51,22 @@ export const getGamesAction = (): AppThunk => (dispatch: AppDispatch) => {
 
 }
 
+export const getGameAction = (id: string): AppThunk => (dispatch: AppDispatch) => {
+    dispatch(setLoading(true));
+    fetch(ApiURL + 'games/' + id)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(data => {
+            dispatch(gameReceived(data));
+        })
+        .catch(error => {
+            console.error('Error fetching data', error)
+            dispatch(setError(error));
+        })
+        .finally(() => {
+        })
+}

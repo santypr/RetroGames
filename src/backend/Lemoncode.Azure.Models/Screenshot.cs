@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Lemoncode.Azure.Api.Models
+namespace Lemoncode.Azure.Models
 {
     public class Screenshot
     {

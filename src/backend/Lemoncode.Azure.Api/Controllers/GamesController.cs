@@ -5,7 +5,9 @@ using Azure.Storage.Sas;
 using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Api.Helpers;
 using Lemoncode.Azure.Api.Models;
+using Lemoncode.Azure.Models;
 using Lemoncode.Azure.Models.Configuration;
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,20 +24,32 @@ namespace Lemoncode.Azure.Api.Controllers
         private readonly ApiDBContext context;
         private readonly StorageOptions storageOptions;
         private readonly ILogger log;
+        private readonly TelemetryClient telemetry;
 
         public GamesController(ApiDBContext context,
                                 IOptions<StorageOptions> storageOptionsSettings,
-                                ILogger<GamesController> log)
+                                ILogger<GamesController> log,
+                                TelemetryClient telemetry)
         {
             this.context = context;
             this.storageOptions = storageOptionsSettings.Value;
             this.log = log;
+            this.telemetry = telemetry;
         }
 
         // GET: api/Games
         [HttpGet("healthcheck")]
         public async Task<ActionResult<IEnumerable<Game>>> HealthCheck()
         {
+            log.LogTrace("GAME - Testing traces");
+            log.LogWarning("GAME - Testing Warning");
+            log.LogError("GAME - Testing Errors");
+            log.LogDebug("GAME - Debug");
+            log.LogInformation("GAME - Information");
+            log.LogCritical("GAME - Critical");
+
+            telemetry.TrackEvent("GAME - MyCustomEvent");
+
             return Ok("Service is running and healthy");
         }
 
@@ -50,7 +64,7 @@ namespace Lemoncode.Azure.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Game>> GetGame(int id)
         {
-            var game = await context.Game.FindAsync(id);
+            var game = await context.Game.Include(i => i.Screenshots).FirstOrDefaultAsync(i => i.Id == id);
 
             if (game == null)
             {

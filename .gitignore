@@ -368,3 +368,7 @@ src/frontend/gamesclient/.vscode/settings.json
 .vscode/settings.json
 /src/backend/.vs/Lemoncode.Azure/v17/.suo
 /src/backend/Lemoncode.Azure.Console/obj/Debug/net6.0/Lemoncode.Azure.Console.assets.cache
+**/[Bb]in/*
+**/[Oo]bj/*
+**/[Pp]operties/*
+/src/backend/Lemoncode.Azure.Fx/local.settings.json
