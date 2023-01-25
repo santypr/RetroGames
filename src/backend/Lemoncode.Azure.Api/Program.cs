@@ -27,7 +27,12 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddOptions();
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
-builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
+
+var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+aiOptions.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+aiOptions.DeveloperMode = true;
+aiOptions.EnableDebugLogger = true;
+builder.Services.AddApplicationInsightsTelemetry(aiOptions);
 
 var app = builder.Build();
 

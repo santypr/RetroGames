@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemoncode.Azure.Fx", "Lemon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemoncode.Azure.DurableFx", "Lemoncode.Azure.DurableFx\Lemoncode.Azure.DurableFx.csproj", "{5BA91F47-6B23-4FA9-AD16-B21612F4950E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemoncode.Azure.Images", "Lemoncode.Azure.Images\Lemoncode.Azure.Images.csproj", "{90902961-930E-4FB3-9F15-34EEBF14C8A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemoncode.Azure.Images", "Lemoncode.Azure.Images\Lemoncode.Azure.Images.csproj", "{90902961-930E-4FB3-9F15-34EEBF14C8A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

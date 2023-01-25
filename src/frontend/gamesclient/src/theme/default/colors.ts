@@ -189,17 +189,6 @@ export const colors = {
         attachedFiles: palette.accent.dark,
         collapsibleSectionTitle: palette.accent.dark,
     },
-    home: {
-        boxTitle: palette.black,
-    },
-    profile: {
-        informationBody: palette.white,
-        informationFooter: palette.gray.lighter,
-        navigation: palette.transparent,
-        navigationHover: palette.accent.regular,
-        fieldContent: palette.gray.darkest,
-        fieldName: palette.gray.regular,
-    },
     table: {
         header: palette.accent.light,
         headerColor: palette.accent.darker,
@@ -219,74 +208,5 @@ export const colors = {
         active: palette.gray.darkest,
         nonActive: palette.accent.regular,
         borderActive: palette.accent.accent,
-    },
-    schoolManagement: {
-        delete: {
-            regular: palette.red.regular,
-            hover: palette.red.light,
-            focus: palette.red.regular,
-        },
-        newRegister: {
-            color: palette.accent.regular,
-            hover: palette.accent.dark,
-        },
-    },
-    messages: {
-        background: palette.white,
-        actionsBackground: palette.gray.lightest,
-        messageBorder: palette.accent.light,
-        myConversation: {
-            background: palette.accent.dark,
-            color: palette.gray.lightest,
-            date: palette.accent.light,
-            links: palette.accent.regular,
-        },
-        hisConversation: {
-            background: palette.gray.lightest,
-            color: palette.gray.darkest,
-            date: palette.gray.regular,
-            links: palette.accent.regular,
-        },
-        header: {
-            background: palette.accent.lighter,
-            color: palette.accent.dark,
-            subject: palette.accent.darkest,
-        },
-    },
-    notifications: {
-        from: palette.accent.darkest,
-        subject: palette.gray.dark,
-        relativeTime: palette.gray.light,
-        delete: palette.accent.regular,
-        border: palette.accent.light,
-        title: palette.accent.darkest,
-        numberBackground: palette.accent.accent,
-        numberColor: palette.white,
-    },
-    collapsibleCard: {
-        title: palette.accent.dark,
-        icon: palette.accent.regular,
-    },
-    permissions: {
-        hasPermissionColor: palette.accent.dark,
-        title: palette.gray.darkest,
-    },
-    todayCard: {
-        color: palette.gray.darker,
-    },
-    signin: {
-        resume: {
-            goToDetail: {
-                color: palette.accent.accent,
-                background: palette.accent.light,
-            },
-            signinDataColor: palette.accent.regular,
-        },
-    },
-    tasks: {
-        resume: {
-            linksColor: palette.accent.accent,
-            itemsColor: palette.gray.darker,
-        },
     },
 };

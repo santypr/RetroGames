@@ -7,7 +7,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lemoncode.Azure.Fx
+namespace Lemoncode.Azure.Fx.Services
 {
     public class SendGridService
     {
