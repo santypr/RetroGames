@@ -372,3 +372,4 @@ src/frontend/gamesclient/.vscode/settings.json
 **/[Oo]bj/*
 **/[Pp]operties/*
 /src/backend/Lemoncode.Azure.Fx/local.settings.json
+/src/backend/Lemoncode.Azure.FxGames/Properties
