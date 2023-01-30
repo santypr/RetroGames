@@ -12,5 +12,6 @@ namespace Lemoncode.Azure.Models.Configuration
         public string AccountKey { get; set; }
         public string ConnectionString { get; set; }
         public string ScreenshotsContainer { get; set; }
+        public string ScreenshotsQueue { get; set; }
     }
 }

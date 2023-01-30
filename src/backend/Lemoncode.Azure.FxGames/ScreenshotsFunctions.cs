@@ -8,6 +8,15 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using static Lemoncode.Azure.Images.Helpers.ImageHelper;
 using Microsoft.Extensions.Logging;
+using Lemoncode.Azure.Models;
+using Azure.Storage.Blobs;
+using Azure.Storage;
+using Lemoncode.Azure.Models.Configuration;
+using System;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Threading.Tasks;
+using System.Data.SqlTypes;
 
 namespace Lemoncode.Azure.FxGames
 {
@@ -22,9 +31,10 @@ namespace Lemoncode.Azure.FxGames
 
 
         [FunctionName("ResizeImage")]
-        public void Run(
-            [BlobTrigger("screenshots/{folder}/{name}")] Stream image,
-            [Blob("thumbnails/{folder}/{name}", FileAccess.Write)] Stream imageSmall,
+        public void ResizeImageFunction(
+            [BlobTrigger("screenshots/{folder}/{name}", Connection = "AzureWebJobsGamesStorage")] Stream image,
+            [Blob("thumbnails/{folder}/{name}", FileAccess.Write, Connection = "AzureWebJobsGamesStorage")] Stream imageSmall,
+            [Queue("screenshots")] string message,
             string name,
             string folder)
         {
@@ -35,6 +45,43 @@ namespace Lemoncode.Azure.FxGames
             {
                 ResizeImage(input, imageSmall, ImageSize.Small, format);
             }
+
+            message = JsonConvert.SerializeObject(new ScreenshotMessage
+            {
+                GameId = Int32.Parse(folder),
+                Filename = name,
+                ScreenshotUrl = string.Empty
+            });
         }
+
+        //[FunctionName("ResizeImageQueue")]
+        //public async Task ResizeImageFunctionQueue(
+        //    [QueueTrigger("screenshots")] string message)
+        //{
+        //    var screenshotMessage = JsonConvert.DeserializeObject<ScreenshotMessage>(message);
+        //    var storageConnection = Environment.GetEnvironmentVariable("AzureWebJobsGamesStorage");
+        //    var blobPath = $"{screenshotMessage.GameId}/{screenshotMessage.Filename}";
+        //    BlobClient blobClient = new BlobClient(
+        //        storageConnection,
+        //        "screenshots",
+        //        blobPath);
+        //    var image = await blobClient.OpenReadAsync();
+        //    IImageFormat format;
+        //    Stream imageSmall = new MemoryStream();
+
+        //    using (Image<Rgba32> input = SixLabors.ImageSharp.Image.Load<Rgba32>(image, out format))
+        //    {
+        //        ResizeImage(input, imageSmall, ImageSize.Small, format);
+        //    }
+        //}
+
+        //[FunctionName("UdpdateGameScreenshotUrl")]
+        //public void UdpdateGameScreenshotUrl(
+        //    [QueueTrigger("thumbnails")] string message)
+        //{
+        //    var screenshotMessage = JsonConvert.DeserializeObject<ScreenshotMessage>(message);
+
+        //    SqlConnection
+        //}
     }
 }

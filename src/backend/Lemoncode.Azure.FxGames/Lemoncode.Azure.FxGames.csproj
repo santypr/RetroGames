@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lemoncode.Azure.Images\Lemoncode.Azure.Images.csproj" />
+    <ProjectReference Include="..\Lemoncode.Azure.Models\Lemoncode.Azure.Models.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
