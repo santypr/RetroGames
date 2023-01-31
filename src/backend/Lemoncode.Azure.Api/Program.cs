@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Models.Configuration;
+using Lemoncode.Azure.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDBContext>(options =>
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 var corsPolicyName = "EnableCors";
 var corsSettings = builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.CorsOptions)).Get<Lemoncode.Azure.Models.Configuration.CorsOptions>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: corsPolicyName, 
@@ -27,6 +29,7 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddOptions();
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
+builder.Services.AddSingleton<BlobService>();
 
 var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
 aiOptions.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];

@@ -77,6 +77,12 @@ export const gamesSlice = createSlice({
             state.hasErrors = false;
             state.errorMessage = '';
         },        
+        gameDeleted: (state, action) => {
+            gamesAdapter.removeOne(state, action.payload);
+            state.isLoading = false;
+            state.hasErrors = false;
+            state.errorMessage = '';
+        },
         setLoading: (state, action) => {
             state.isLoading = action.payload;
         },
@@ -88,6 +94,6 @@ export const gamesSlice = createSlice({
     }
 });
 
-export const { gamesReceived, gameReceived, setLoading, setError } = gamesSlice.actions;
+export const { gamesReceived, gameReceived, gameDeleted, setLoading, setError } = gamesSlice.actions;
 
 export default gamesSlice.reducer;

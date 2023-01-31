@@ -21,7 +21,7 @@ export const GamesContainerStyles = createUseStyles((theme: any) => ({
         width: '100%',
         padding: '20px 0',
 
-        '& > article': {
+        '& > *': {
             flex: '1 1 250px'
         }
     }

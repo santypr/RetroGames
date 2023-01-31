@@ -54,22 +54,35 @@ namespace Lemoncode.Azure.Fx
 
         [Function("ResizeScreenshot")]
         [BlobOutput("screenshots/{folder}/thumbnails/{name}")]
-        public static Stream ResizeScreenshot(
+        public static string ResizeScreenshot(
             [BlobTrigger("screenshots/{folder}/{name}", Connection = "AzureWebJobsStorage")] string image,
             FunctionContext context,
-            string name)
+            string name,
+            string folder)
         {
             var logger = context.GetLogger("BlobFunction");
-            logger.LogInformation($"Triggered Item = {image}");
+            logger.LogInformation($"Triggered Item = {name} in folder {folder}");
             IImageFormat format;
+
+            Stream imageStream = GenerateStreamFromString(image);
             Stream thumbnail = new MemoryStream();
 
-            using (Image<Rgba32> input = SixLabors.ImageSharp.Image.Load<Rgba32>(image, out format))
+            using (Image<Rgba32> input = SixLabors.ImageSharp.Image.Load<Rgba32>(imageStream, out format))
             {
                 ImageHelper.ResizeImage(input, thumbnail, ImageSize.Small, format);
             }
 
-            return thumbnail;
+            return image;
+        }
+
+        public static Stream GenerateStreamFromString(string s)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
     }
 }

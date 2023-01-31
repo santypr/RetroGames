@@ -13,15 +13,16 @@ export const GameItem = (props: IGameProps) => {
 
     return (
         <>
-            <article className={styles.game}>
-                <div className={styles.bullet}>
-                    <img className={styles.cover} 
-                        src={props.game.posterUrl} 
-                        alt={props.game.title} />
-                </div>
-                {props.game.title}
-                <Link to={"Game/" + props.game.id}>Ver</Link>
-            </article>
+            <Link className={styles.gameLink} to={"Game/" + props.game.id}>
+                <article className={styles.game}>
+                    <div className={styles.bullet}>
+                        <img className={styles.cover}
+                            src={props.game.posterUrl}
+                            alt={props.game.title} />
+                    </div>
+                    {props.game.title}
+                </article>
+            </Link>
         </>
     )
 }
