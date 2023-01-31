@@ -34,7 +34,6 @@ namespace Lemoncode.Azure.FxGames
         public void ResizeImageFunction(
             [BlobTrigger("screenshots/{folder}/{name}", Connection = "AzureWebJobsGamesStorage")] Stream image,
             [Blob("thumbnails/{folder}/{name}", FileAccess.Write, Connection = "AzureWebJobsGamesStorage")] Stream imageSmall,
-            [Queue("screenshots")] string message,
             string name,
             string folder)
         {
@@ -45,13 +44,6 @@ namespace Lemoncode.Azure.FxGames
             {
                 ResizeImage(input, imageSmall, ImageSize.Small, format);
             }
-
-            message = JsonConvert.SerializeObject(new ScreenshotMessage
-            {
-                GameId = Int32.Parse(folder),
-                Filename = name,
-                ScreenshotUrl = string.Empty
-            });
         }
 
         //[FunctionName("ResizeImageQueue")]
