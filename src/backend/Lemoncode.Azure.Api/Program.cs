@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Models.Configuration;
 using Lemoncode.Azure.Api.Services;
+using Lemoncode.Azure.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDBContext>(options =>
@@ -13,20 +14,20 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-var corsPolicyName = "EnableCors";
-var corsSettings = builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.CorsOptions)).Get<Lemoncode.Azure.Models.Configuration.CorsOptions>();
+builder.Services.AddSignalR();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: corsPolicyName, 
-                      policy =>
-                        {
-                            policy.AllowAnyHeader()
-                                  .AllowAnyMethod()
-                                  .WithOrigins(corsSettings?.Origins ?? new[] { "*" });
-                        });
+    options.AddPolicy("AllowAllOrigins",
+        currentbuilder =>
+        {
+            currentbuilder.AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .SetIsOriginAllowed(_ => true)
+                          .AllowCredentials();
+        });
 });
+
 builder.Services.AddOptions();
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
 builder.Services.AddSingleton<BlobService>();
@@ -46,7 +47,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(corsPolicyName);
+app.UseCors("AllowAllOrigins");
+app.MapHub<RatingHub>("/hub");
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
