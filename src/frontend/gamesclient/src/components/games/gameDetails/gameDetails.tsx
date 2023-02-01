@@ -8,6 +8,7 @@ import { Uploader } from "../../common/uploader/uploader";
 import { useEffect } from "react";
 import { deleteGameAction, getGameAction } from "../../../redux/actions/games";
 import { useNavigate } from "react-router-dom";
+import RatingService from "../../../services/signalr"
 
 export const GameDetails = () => {
     const theme = useTheme();
@@ -16,6 +17,24 @@ export const GameDetails = () => {
     const dispatch = useAppDispatch();
     const game: IGame = useAppSelector(gameByIdSelector(id))!;
     const navigate = useNavigate();
+    const { rateGame } = RatingService;
+    const [ratingEvents, setRatingEvents] = useState(0);
+    const [rating, setRating] = userState(0);
+
+    RatingService.setRatingEvent((tribe: string) => {
+
+        // if (tribe === props.spartans.id) {
+        //     props.spartans.army++;
+        // } else if (tribe === props.vikings.id) {
+        //     props.vikings.army++;
+        // } else if (tribe === props.jiujitsu.id) {
+        //     props.jiujitsu.army++;
+        // }
+        
+        setRatingEvents()
+        // setWarEvents(warEvents + 1);
+    })
+
 
     useEffect(() => {
         dispatch(getGameAction(id as string));

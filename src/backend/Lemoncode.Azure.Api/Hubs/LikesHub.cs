@@ -7,6 +7,11 @@ namespace Lemoncode.Azure.Api.Hubs
         public Task NotifyAll(Notification notification) =>
             Clients.All.SendAsync("NotificationRecived", notification);
 
+        public async Task UserConnected(string user)
+        {
+            await Clients.All.SendAsync("UserConnected", user);
+        }
+
     }
     public record Notification(string Text, DateTime Date);
 }
