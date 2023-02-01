@@ -124,6 +124,8 @@ namespace Lemoncode.Azure.Api.Controllers
                 return NotFound();
             }
 
+            await this.blobService.DeleteFolderBlobs("screenshots", id.ToString());
+
             //context.Game.Remove(game);
             //await context.SaveChangesAsync();
 

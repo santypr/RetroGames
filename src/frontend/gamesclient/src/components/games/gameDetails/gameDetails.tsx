@@ -1,7 +1,7 @@
 import { useTheme } from "react-jss";
 import { IGame, IScreenshot } from "../../../models/IGame"
 import { GameDetailsStyles } from "./gameDetails.jss";
-import { Navigate, redirect, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { gameByIdSelector } from "../../../redux/selectors/games";
 import { Uploader } from "../../common/uploader/uploader";
@@ -38,7 +38,7 @@ export const GameDetails = () => {
 
     useEffect(() => {
         dispatch(getGameAction(id as string));
-    }, [dispatch])
+    }, [dispatch, id])
 
     const onDelete = (ev: React.MouseEvent<HTMLElement>) => {
         dispatch(deleteGameAction(id as string));
