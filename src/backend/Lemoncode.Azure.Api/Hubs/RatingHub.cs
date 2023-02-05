@@ -11,13 +11,13 @@ namespace Lemoncode.Azure.Api.Hubs
             this.hubContext = hubContext;
         }
 
-        public Task NotifyAll(Notification notification) =>
-            Clients.All.SendAsync("NotificationRecived", notification);
+        //public Task NotifyAll(Notification notification) =>
+        //    Clients.All.SendAsync("NotificationRecived", notification);
 
-        public async Task UserConnected(string user)
-        {
-            await Clients.All.SendAsync("UserConnected", user);
-        }
+        //public async Task UserConnected(string user)
+        //{
+        //    await Clients.All.SendAsync("UserConnected", user);
+        //}
 
         public async Task RateGame(int rating) => 
             await Clients.All.SendAsync("gameRated", rating);
