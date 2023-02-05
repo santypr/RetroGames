@@ -53,18 +53,8 @@ export const GameDetails = () => {
     }
 
     const handleRating = (value: number) => {
-        // setMyRating(value);
         rateGame(value);
         myRateGame(value);
-
-        // const voteCounter = votes + 1;
-        // const ratingSum = totalRating + value;
-        // const average = +(ratingSum / voteCounter).toFixed(2);
-
-        // setVote(voteCounter);
-        // setTotalRating(ratingSum);
-        // setAvgRating(average);
-        // other logic
     }
 
     return (

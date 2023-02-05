@@ -47,6 +47,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// http://mysite.azurewebsites.net/hub
+
 app.UseCors("AllowAllOrigins");
 app.MapHub<RatingHub>("/hub");
 app.UseRouting();
