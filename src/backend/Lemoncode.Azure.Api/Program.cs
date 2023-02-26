@@ -31,6 +31,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddOptions();
 builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
 builder.Services.AddSingleton<BlobService>();
+builder.Services.Configure<ComputerVisionOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.ComputerVisionOptions)));
+builder.Services.AddSingleton<IComputerVisionService, ComputerVisionService>();
 
 var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
 aiOptions.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
