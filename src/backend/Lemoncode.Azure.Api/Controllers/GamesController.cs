@@ -14,18 +14,20 @@ namespace Lemoncode.Azure.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GamesController : ControllerBase
+    public partial class GamesController : ControllerBase
     {
         private readonly ApiDBContext context;
         private readonly StorageOptions storageOptions;
         private readonly ILogger log;
         private readonly TelemetryClient telemetry;
         private readonly BlobService blobService;
+        private readonly IComputerVisionService computerVisionService;
 
         public GamesController(ApiDBContext context,
                                 IOptions<StorageOptions> storageOptionsSettings,
                                 ILogger<GamesController> log,
-                                BlobService blobService,
+                                BlobService blobService, 
+                                IComputerVisionService computerVisionService,
                                 TelemetryClient telemetry)
         {
             this.context = context;
@@ -33,6 +35,7 @@ namespace Lemoncode.Azure.Api.Controllers
             this.log = log;
             this.telemetry = telemetry;
             this.blobService = blobService;
+            this.computerVisionService = computerVisionService;
         }
 
         // GET: api/Games
