@@ -22,12 +22,14 @@ namespace Lemoncode.Azure.Api.Controllers
         private readonly TelemetryClient telemetry;
         private readonly BlobService blobService;
         private readonly IComputerVisionService computerVisionService;
+        private readonly IBingSearchService bingSearchService;
 
         public GamesController(ApiDBContext context,
                                 IOptions<StorageOptions> storageOptionsSettings,
                                 ILogger<GamesController> log,
-                                BlobService blobService, 
+                                BlobService blobService,
                                 IComputerVisionService computerVisionService,
+                                IBingSearchService bingSearchService,
                                 TelemetryClient telemetry)
         {
             this.context = context;
@@ -36,6 +38,7 @@ namespace Lemoncode.Azure.Api.Controllers
             this.telemetry = telemetry;
             this.blobService = blobService;
             this.computerVisionService = computerVisionService;
+            this.bingSearchService = bingSearchService;
         }
 
         // GET: api/Games
