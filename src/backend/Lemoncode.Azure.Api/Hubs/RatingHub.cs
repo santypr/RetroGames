@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Lemoncode.Azure.Api.Services;
+using Microsoft.AspNetCore.SignalR;
+using System.Text.Json;
 
 namespace Lemoncode.Azure.Api.Hubs
 {
     public class RatingHub : Hub
     {
         private readonly IHubContext<RatingHub> hubContext;
+        private readonly IBingSearchService bingSearchService;
 
-        public RatingHub(IHubContext<RatingHub> hubContext)
+        public RatingHub(IHubContext<RatingHub> hubContext, IBingSearchService bingSearchService)
         {
             this.hubContext = hubContext;
+            this.bingSearchService = bingSearchService;
         }
 
         //public Task NotifyAll(Notification notification) =>
@@ -28,6 +32,12 @@ namespace Lemoncode.Azure.Api.Hubs
             await Clients.Client(vote.ClientId).SendAsync("myGameRated", vote.Value);
         }
 
+        public async Task SearchGame(SearchGame searchGame)
+        {
+            var searchResult = await bingSearchService.SearchAsync(searchGame.Value);
+            await Clients.Client(searchGame.ClientId).SendAsync("gameSearched", JsonSerializer.Serialize(searchResult));
+        }
+
     }
     public record Notification(string Text, DateTime Date);
     public record Vote(
@@ -36,4 +46,11 @@ namespace Lemoncode.Azure.Api.Hubs
         //string GroupId,
         int Value
     );
+
+    public record SearchGame(
+      //string UserId,
+      string ClientId,
+      //string GroupId,
+      string Value
+  );
 }

@@ -35,7 +35,7 @@ namespace Lemoncode.Azure.Api.Services
 
         public async Task<SearchResponse?> SearchAsync(string searchTerm)
         {
-            var uriQuery = "?q=" + Uri.EscapeDataString(searchTerm);
+            var uriQuery = "?setlang=es&q=" + Uri.EscapeDataString(searchTerm);
             var responseString = await client.GetStringAsync(uriQuery);
             return JsonConvert.DeserializeObject<SearchResponse?>(responseString);
         }
