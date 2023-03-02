@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Lemoncode.Azure.Api.Models;
+using Lemoncode.Azure.Models;
 
 namespace Lemoncode.Azure.Api.Data
 {
@@ -13,6 +13,6 @@ namespace Lemoncode.Azure.Api.Data
             : base(options)
         {
         }
-        public DbSet<Lemoncode.Azure.Api.Models.Game> Game { get; set; }
+        public DbSet<Game> Game { get; set; }
     }
 }

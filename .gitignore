@@ -366,3 +366,16 @@ src/frontend/casviapp/.vscode/settings.json
 src/frontend/gamesclient/.vscode/settings.json
 >>>>>>> baad5a761b0a6366acc6c2f0e290f568cae20a24
 .vscode/settings.json
+/src/backend/.vs/Lemoncode.Azure/v17/.suo
+/src/backend/Lemoncode.Azure.Console/obj/Debug/net6.0/Lemoncode.Azure.Console.assets.cache
+**/[Bb]in/*
+**/[Oo]bj/*
+**/[Pp]operties/*
+/src/backend/Lemoncode.Azure.Fx/local.settings.json
+/src/backend/Lemoncode.Azure.FxGames/Properties
+/src/backend/Lemoncode.Azure.Api/obj/Debug/net6.0/Lemoncode.Azure.Api.csproj.FileListAbsolute.txt
+/src/backend/Lemoncode.Azure.Api/obj/Debug/net6.0/Lemoncode.Azure.Api.assets.cache
+/src/backend/Lemoncode.Azure.Models/obj/Debug/net6.0/Lemoncode.Azure.Models.assets.cache
+/src/backend/Lemoncode.Azure.Models/obj/Debug/net6.0/Lemoncode.Azure.Models.csproj.FileListAbsolute.txt
+/src/backend/Lemoncode.Azure.Api/bin/Release/net6.0/Lemoncode.Azure.Api.dll
+/src/backend/Lemoncode.Azure.Api/bin/Release/net6.0/Lemoncode.Azure.Api.pdb

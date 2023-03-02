@@ -1,4 +1,4 @@
-﻿namespace Lemoncode.Azure.Api.Models.Enums
+﻿namespace Lemoncode.Azure.Models.Enums
 {
     public enum Genre
     {

@@ -15,7 +15,7 @@ export const Uploader = (props: IUploaderProps) => {
     event.preventDefault()
     const url = process.env.REACT_APP_API_URL + "Games/" + props.id + "/Screenshots/Upload";
     const formData = new FormData();
-    formData.append('file', file!);
+    formData.append('formFile', file!);
     formData.append('fileName', file!.name);
     const config = {
       headers: {
@@ -31,7 +31,7 @@ export const Uploader = (props: IUploaderProps) => {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <h1>React File Upload</h1>
+        <h1>Upload Screenshots</h1>
         <input type="file" onChange={handleChange} />
         <button type="submit">Upload</button>
       </form>

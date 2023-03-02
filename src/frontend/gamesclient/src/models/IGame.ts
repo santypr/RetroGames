@@ -15,6 +15,7 @@ export interface IGame {
 export interface IScreenshot {
     id?: number,
     url?: string,
+    thumbnailurl?: string,
     gameid?: number,
     filename?: string
 }

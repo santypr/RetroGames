@@ -1,6 +1,10 @@
 import { createUseStyles } from "react-jss";
 
 export const GameItemStyles = createUseStyles((theme: any) => ({
+    gameLink: {
+        display: "block",
+        textDecoration: "none"
+    },
     game: {
         display: "flex",
         flexFlow: "row",

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Lemoncode.Azure.Api.Data;
-using Microsoft.AspNetCore.Cors.Infrastructure;
+using Lemoncode.Azure.Models.Configuration;
+using Lemoncode.Azure.Api.Services;
+using Lemoncode.Azure.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDBContext>(options =>
@@ -12,15 +14,33 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
-var corsSettings = builder.Configuration.GetSection(nameof(CorsOptions)).Get<Lemoncode.Azure.Models.Configuration.CorsOptions>();
-builder.Services.AddCors(opt =>
+builder.Services.AddCors(options =>
 {
-    opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins(corsSettings?.Origins ?? new[] { "*" });
-    });
+    options.AddPolicy("AllowAllOrigins",
+        currentbuilder =>
+        {
+            currentbuilder.AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .SetIsOriginAllowed(_ => true)
+                          .AllowCredentials();
+        });
 });
+
+builder.Services.AddOptions();
+builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.StorageOptions)));
+builder.Services.AddSingleton<BlobService>();
+builder.Services.Configure<ComputerVisionOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.ComputerVisionOptions)));
+builder.Services.AddSingleton<IComputerVisionService, ComputerVisionService>();
+builder.Services.Configure<BingSearchOptions>(builder.Configuration.GetSection(nameof(Lemoncode.Azure.Models.Configuration.BingSearchOptions)));
+builder.Services.AddHttpClient<IBingSearchService, BingSearchService>();
+
+var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+aiOptions.ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
+aiOptions.DeveloperMode = true;
+aiOptions.EnableDebugLogger = true;
+builder.Services.AddApplicationInsightsTelemetry(aiOptions);
 
 var app = builder.Build();
 
@@ -31,7 +51,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CorsPolicy");
+app.UseCors("AllowAllOrigins");
+app.MapHub<RatingHub>("/hub");
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

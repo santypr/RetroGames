@@ -1,7 +1,7 @@
-﻿using Lemoncode.Azure.Api.Models.Enums;
+﻿using Lemoncode.Azure.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Lemoncode.Azure.Api.Models
+namespace Lemoncode.Azure.Models
 {
     public class Game
     {
@@ -11,7 +11,7 @@ namespace Lemoncode.Azure.Api.Models
         public string Info { get; set; }
         public int Year { get; set; }
         public string PosterUrl { get; set; }
-        public Genre Genre{ get; set; }
+        public Genre Genre { get; set; }
         public List<Screenshot> Screenshots { get; set; }
         public string DownloadUrl { get; set; }
         public string AgeGroup { get; set; }
