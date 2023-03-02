@@ -380,8 +380,6 @@ src/frontend/gamesclient/.vscode/settings.json
 /src/backend/Lemoncode.Azure.Api/bin/**
 /src/backend/Lemoncode.Azure.Api/bin/**
 /src/backend/Lemoncode.Azure.Api/obj/**
-/src/backend/Lemoncode.Azure.Api/obj/project.assets.json
-/src/backend/Lemoncode.Azure.Console/obj/Lemoncode.Azure.Console.csproj.nuget.dgspec.json
-/src/backend/Lemoncode.Azure.Console/obj/project.assets.json
-/src/backend/Lemoncode.Azure.Models/obj/Lemoncode.Azure.Models.csproj.nuget.dgspec.json
-/src/backend/Lemoncode.Azure.Models/obj/project.assets.json
+/src/backend/Lemoncode.Azure.Console/obj/**
+/src/backend/Lemoncode.Azure.Models/obj/**
+/src/backend/Lemoncode.Azure.Models/obj/**
