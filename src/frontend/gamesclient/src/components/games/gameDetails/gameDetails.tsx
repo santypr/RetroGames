@@ -6,11 +6,10 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { gameByIdSelector } from "../../../redux/selectors/games";
 import { Uploader } from "../../common/uploader/uploader";
 import { useState, useEffect } from "react";
-import { deleteGameAction, GetAnalysisAction, getGameAction } from "../../../redux/actions/games";
+import { deleteGameAction, getGameAction } from "../../../redux/actions/games";
 import { useNavigate } from "react-router-dom";
 import RatingService from "../../../services/signalr";
 import Rating from 'react-animated-rating';
-import { setConstantValue } from "typescript";
 
 export const GameDetails = () => {
     const theme = useTheme();
@@ -60,9 +59,7 @@ export const GameDetails = () => {
     }
 
     const fetchThumbnail = async (service: string) => {
-        const gameId = game!.id!.toString();
         const screenshotId = game!.screenshots![0].id!.toString();
-        // dispatch(GetAnalysisAction(gameId, screenshotId));   
         const ApiURL = process.env.REACT_APP_API_URL;
         var result = fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/' + service + '?width=100&height=100&smartCropping=true', { method: 'GET' })
             .then(response => {
@@ -80,9 +77,7 @@ export const GameDetails = () => {
     }
 
     const fetchCognitive = async (service: string) => {
-        const gameId = game!.id!.toString();
         const screenshotId = game!.screenshots![0].id!.toString();
-        // dispatch(GetAnalysisAction(gameId, screenshotId));   
         const ApiURL = process.env.REACT_APP_API_URL;
         var result = fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/' + service, { method: 'GET' })
             .then(response => {
@@ -168,7 +163,7 @@ export const GameDetails = () => {
                     <div className={styles.action} onClick={handleCensorship}>¡¡Censura!!</div>
                 </div>
                 <div className={styles.actions}>
-                    <img src={cognitiveThumbnail} />
+                    <img src={cognitiveThumbnail} alt="Thumbnail" />
                     {cognitiveResult! != null ? JSON.stringify(cognitiveResult): ''}
                 </div>
             </section>

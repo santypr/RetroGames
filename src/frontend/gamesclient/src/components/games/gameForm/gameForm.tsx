@@ -80,19 +80,19 @@ export const GameForm = () => {
             setDescription(searchResult.WebPages.Value[descriptionIndex].Snippet);
             setThumbnailUrl(searchResult.Images.Value[thumbnailIndex].ThumbnailUrl);
         }
-    }, [searchResult])
+    }, [searchResult, descriptionIndex, thumbnailIndex])
 
-    useEffect(() => {
-        if (searchResult) {
-            setDescription(searchResult.WebPages.Value[descriptionIndex].Snippet);
-        }
-    }, [descriptionIndex])
+    // useEffect(() => {
+    //     // if (searchResult) {
+    //         setDescription(searchResult?.WebPages.Value[descriptionIndex].Snippet);
+    //     // }
+    // }, [descriptionIndex])
 
-    useEffect(() => {
-        if (searchResult) {
-            setThumbnailUrl(searchResult.Images.Value[thumbnailIndex].ThumbnailUrl);
-        }
-    }, [thumbnailIndex]);
+    // useEffect(() => {
+    //     // if (searchResult) {
+    //         setThumbnailUrl(searchResult?.Images.Value[thumbnailIndex].ThumbnailUrl);
+    //     // }
+    // }, [thumbnailIndex]);
 
     const descriptionPagination =
         searchResult ?
