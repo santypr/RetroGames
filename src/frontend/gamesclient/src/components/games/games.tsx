@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useTheme } from "react-jss";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { IGame } from "../../models/IGame";
 import { getGamesAction } from "../../redux/actions/games";
 import { useAppDispatch } from "../../redux/hooks";
@@ -27,6 +28,8 @@ export const GamesContainer = () => {
                     <br /> Errores: {hasErrors ? errorMessage : "Sin errores "}
                 </div>
                 <div className={styles.container}>
+                    <Link className={styles.btnAddGame} to={"game/new/"}>+</Link>
+
                     {games.map((item: IGame, index: number) => {
                         return (
                             <GameItem key={index} game={item} />

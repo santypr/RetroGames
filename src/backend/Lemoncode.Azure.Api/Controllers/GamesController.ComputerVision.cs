@@ -45,7 +45,7 @@ namespace Lemoncode.Azure.Api.Controllers
         [ProducesResponseType(typeof(TagResult), 200)]
         public async Task<IActionResult> GetScreenshotTags([FromRoute] int id, [FromRoute] int screenshotId)
         {
-            log.LogInformation($"GAMES - Getting Screenshot for game with id {id}");           
+            log.LogInformation($"GAMES - Getting Screenshot for game with id {id}");
 
             try
             {
@@ -64,7 +64,7 @@ namespace Lemoncode.Azure.Api.Controllers
                 log.LogInformation($"GAMES - Get Screenshot adultInfo successfully");
                 var tags = await computerVisionService.GetTagsAsync(screenshot.Url);
                 return Ok(tags);
-                 
+
             }
             catch (Exception ex)
             {
@@ -165,7 +165,13 @@ namespace Lemoncode.Azure.Api.Controllers
                 log.LogInformation($"GAMES - Get Screenshot thumbnail successfully");
                 var stream = await computerVisionService.GetThumbnailAsync(screenshot.Url, width, height, smartCropping);
 
-                return File(stream, "application/octet-stream", screenshot.Filename);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    stream.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    return Ok(new { content = (Convert.ToBase64String(fileBytes)) });
+                }
+                //return File(stream, "application/octet-stream", screenshot.Filename);
 
             }
             catch (Exception ex)
