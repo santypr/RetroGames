@@ -3,6 +3,7 @@ using Lemoncode.Azure.Api.Data;
 using Lemoncode.Azure.Models.Configuration;
 using Lemoncode.Azure.Api.Services;
 using Lemoncode.Azure.Api.Hubs;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiDBContext>(options =>
@@ -10,7 +11,11 @@ builder.Services.AddDbContext<ApiDBContext>(options =>
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(opts =>
+{
+    var enumConverter = new JsonStringEnumConverter();
+    opts.JsonSerializerOptions.Converters.Add(enumConverter);
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

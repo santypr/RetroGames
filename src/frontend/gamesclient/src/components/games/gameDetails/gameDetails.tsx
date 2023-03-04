@@ -61,7 +61,7 @@ export const GameDetails = () => {
 
     const fetchThumbnail = async (service: string) => {
         const gameId = game!.id!.toString();
-        const screenshotId = game!.screenshots[0].id!.toString();
+        const screenshotId = game!.screenshots![0].id!.toString();
         // dispatch(GetAnalysisAction(gameId, screenshotId));   
         const ApiURL = process.env.REACT_APP_API_URL;
         var result = fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/' + service + '?width=100&height=100&smartCropping=true', { method: 'GET' })
@@ -81,7 +81,7 @@ export const GameDetails = () => {
 
     const fetchCognitive = async (service: string) => {
         const gameId = game!.id!.toString();
-        const screenshotId = game!.screenshots[0].id!.toString();
+        const screenshotId = game!.screenshots![0].id!.toString();
         // dispatch(GetAnalysisAction(gameId, screenshotId));   
         const ApiURL = process.env.REACT_APP_API_URL;
         var result = fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/' + service, { method: 'GET' })

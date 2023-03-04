@@ -9,7 +9,7 @@ export interface IGame {
     ageGroup?: string,
     playability?: number,
     rating?: number
-    screenshots: IScreenshot[]
+    screenshots?: IScreenshot[]
 }
 
 export interface IScreenshot {

@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "react-jss"
 import { GameFormStyles } from "./gameForm.jss"
+import { createGameAction } from "../../../redux/actions/games";
 import RatingService from "../../../services/signalr";
+import { IGame } from "../../../models/IGame";
+import { useAppDispatch } from "../../../redux/hooks";
 
 export const GameForm = () => {
+    const dispatch = useAppDispatch();
     const theme = useTheme();
     const styles = GameFormStyles({ ...theme });
     const [title, setTitle] = useState("");
@@ -23,6 +27,12 @@ export const GameForm = () => {
         searchGameQuery(title);
     }
 
+    const handleSave = () => {
+        console.log('save');
+        var game: IGame = { title: title, info: description, posterUrl: thumbnailUrl, rating: 0, genre: 'Action', ageGroup: "0", downloadUrl: '' };
+        dispatch(createGameAction(game));
+    }
+
     const handlePrevDescription = () => {
         console.log("Prev");
         if (descriptionIndex === 0) {
@@ -40,7 +50,7 @@ export const GameForm = () => {
             setDescriptionIndex(descriptionIndex + 1);
         }
     }
-    
+
     const handlePrevThumbnail = () => {
         console.log("Prev");
         if (thumbnailIndex === 0) {
@@ -63,9 +73,6 @@ export const GameForm = () => {
         const jsonResult = JSON.parse(result);
         console.log(jsonResult.WebPages.Value);
         setSearchResult(jsonResult);
-        // setDescription(jsonResult.WebPages.Value[0].Snippet);
-        // setThumbnailUrl(jsonResult.Images.Value[0].ThumbnailUrl);
-        // setgameSearchEnded(true);
     })
 
     useEffect(() => {
@@ -80,7 +87,7 @@ export const GameForm = () => {
             setDescription(searchResult.WebPages.Value[descriptionIndex].Snippet);
         }
     }, [descriptionIndex])
-    
+
     useEffect(() => {
         if (searchResult) {
             setThumbnailUrl(searchResult.Images.Value[thumbnailIndex].ThumbnailUrl);
@@ -96,7 +103,6 @@ export const GameForm = () => {
                 </div>
             </>
             : <>Not ended</>;
-
 
     const thumbnailPagination =
         searchResult ?
@@ -118,10 +124,18 @@ export const GameForm = () => {
                         type='text'
                         placeholder="Nombre"
                         onChange={onChangeTitle} />
-                    <div
-                        className={styles.search}
-                        onClick={handleSearch}>
-                        Buscar
+                    <div className={styles.actions}>
+                        <button
+                            className={styles.search}
+                            onClick={handleSearch}>
+                            Buscar
+                        </button>
+                        <button
+                            className={styles.search}
+                            onClick={handleSave}
+                            disabled={searchResult ? false : true}>
+                            Guardar
+                        </button>
                     </div>
                 </div>
                 <div className={styles.cognitiveResult}>
