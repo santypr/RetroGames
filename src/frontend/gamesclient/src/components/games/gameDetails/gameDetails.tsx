@@ -67,7 +67,7 @@ export const GameDetails = () => {
         var result = fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/' + service + '?width=100&height=100&smartCropping=true', { method: 'GET' })
             .then(response => {
                 if (response.ok) {
-                    return response.text();
+                    return response.json();
                 }
             })
             .catch(error => {
@@ -119,8 +119,8 @@ export const GameDetails = () => {
 
     const handleThumbnail = async (ev: React.MouseEvent<HTMLElement>) => {
         var result = await fetchThumbnail('Thumbnail');
-        // setcognitiveThumbnail(result);
-        // console.log('thumbnail');
+        setcognitiveThumbnail('data:image/png;base64,' + result.content);
+        console.log('thumbnail',result.content );
     }
 
     const handleCensorship = async (ev: React.MouseEvent<HTMLElement>) => {
