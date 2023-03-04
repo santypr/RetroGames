@@ -1,6 +1,7 @@
 // import { CSSProperties } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { GameDetails } from '../components/games/gameDetails/gameDetails';
+import { GameForm } from '../components/games/gameForm/gameForm';
 import { GamesContainer } from '../components/games/games';
 import { Template } from '../components/template/template';
 import {
@@ -21,6 +22,14 @@ export const DefaultRouter = () => {
         {
             path: routeUrls.GAMEDETAILS,
             element: <Template component={() => <GameDetails /> } />,
+        },
+        {
+            path: routeUrls.GAMENEW,
+            element: <Template component={() => <GameForm /> } />,
+        },
+        {
+            path: routeUrls.GAMEEDIT,
+            element: <Template component={() => <GameForm /> } />,
         },
     ]);
 };

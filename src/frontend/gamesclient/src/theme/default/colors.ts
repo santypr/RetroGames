@@ -10,6 +10,11 @@ export const palette = {
         darker: '#325169',
         darkest: '#283846',
         accent: '#009FE3',
+        pink: '#F72585',
+        bluelight: '#F72585',
+        blueregular: '#4361EE',
+        purpleregular: '#3A0CA3',
+        purpledark: '#190649'
     },
     gray: {
         lightest: '#F6F5F8',
@@ -209,4 +214,32 @@ export const colors = {
         nonActive: palette.accent.regular,
         borderActive: palette.accent.accent,
     },
+    games: {
+        btnAdd:{
+            background: palette.gray.darkest,
+            foreground: palette.gray.light,
+            hover: {
+                background: palette.accent.purpledark,
+                foreground: palette.accent.pink
+            }
+        },
+        form: {
+            label: {
+                foreground: palette.gray.dark
+            },
+            input: {
+                foreground: palette.gray.darkest,
+                background: palette.gray.lighter,
+                border: palette.gray.regular
+            },
+            search: {
+                background: palette.gray.darkest,
+                foreground: palette.gray.light,
+                hover: {
+                    background: palette.accent.purpleregular,
+                    foreground: palette.accent.pink
+                }
+            }
+        }
+    }
 };

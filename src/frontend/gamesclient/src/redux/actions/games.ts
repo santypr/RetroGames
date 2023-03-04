@@ -90,3 +90,23 @@ export const deleteGameAction = (id: string): AppThunk => (dispatch: AppDispatch
         .finally(() => {
         })
 }
+
+export const GetAnalysisAction = (id: string, screenshotId: string): AppThunk => (dispatch: AppDispatch) => {
+    dispatch(setLoading(true));
+    fetch(ApiURL + 'games/' + id + '/Screenshots/' + screenshotId + '/Analyze', { method: 'GET' })
+        .then(response => {
+            if (response.ok) {
+                return response.ok;
+            }
+            throw response;
+        })
+        .then(data => {
+            dispatch(gameDeleted(id));
+        })
+        .catch(error => {
+            console.error('Error removing data', error)
+            dispatch(setError(error));
+        })
+        .finally(() => {
+        })
+}

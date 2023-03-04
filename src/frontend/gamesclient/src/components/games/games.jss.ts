@@ -24,5 +24,19 @@ export const GamesContainerStyles = createUseStyles((theme: any) => ({
         '& > *': {
             flex: '1 1 250px'
         }
+    },
+    btnAddGame: {
+        background: theme.colors.games.btnAdd.background,
+        color: theme.colors.games.btnAdd.foreground,
+        fontSize: '80px',
+        textAlign: "center",
+        verticalAlign: "middle",
+        cursor: 'pointer',
+        textDecoration: 'none',
+
+        '&:hover': {
+            background: theme.colors.games.btnAdd.hover.background,
+            color: theme.colors.games.btnAdd.hover.foreground,
+        }
     }
 }));
