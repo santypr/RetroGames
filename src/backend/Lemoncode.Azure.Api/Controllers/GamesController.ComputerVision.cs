@@ -1,5 +1,4 @@
-﻿using Lemoncode.Azure.Api.Helpers;
-using Lemoncode.Azure.Models;
+﻿using Lemoncode.Azure.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 using Microsoft.EntityFrameworkCore;
@@ -141,8 +140,7 @@ namespace Lemoncode.Azure.Api.Controllers
         }
 
         [HttpGet("{id}/Screenshots/{screenshotId}/Thumbnail")]
-        [ProducesResponseType(typeof(FileStreamResult), 200)]
-        [Produces("application/octet-stream")]
+        [ProducesResponseType(typeof(FileBase64), 200)]
         public async Task<IActionResult> GetScreenshotThumbnail([FromRoute] int id, [FromRoute] int screenshotId,
                                                                 [FromQuery] int width, [FromQuery] int height, [FromQuery] bool smartCropping)
         {
@@ -165,13 +163,15 @@ namespace Lemoncode.Azure.Api.Controllers
                 log.LogInformation($"GAMES - Get Screenshot thumbnail successfully");
                 var stream = await computerVisionService.GetThumbnailAsync(screenshot.Url, width, height, smartCropping);
 
-                using (MemoryStream ms = new MemoryStream())
+                if (stream is not null)
                 {
-                    stream.CopyTo(ms);
+                    using MemoryStream ms = new();
+                    await stream.CopyToAsync(ms);
                     var fileBytes = ms.ToArray();
-                    return Ok(new { content = (Convert.ToBase64String(fileBytes)) });
+                    return Ok(new FileBase64 (){ Content = (Convert.ToBase64String(fileBytes)) });
                 }
-                //return File(stream, "application/octet-stream", screenshot.Filename);
+
+                return NotFound();
 
             }
             catch (Exception ex)
