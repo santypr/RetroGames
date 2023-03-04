@@ -34,17 +34,27 @@ export const GameFormStyles = createUseStyles((theme: any) => ({
         minHeight: '300px',
         width: '100%'
     },
+    actions: {
+        display: "flex",
+        flexFlow: "row nowrap",
+        justifyContent: "end",
+        columnGap: "10px",
+        padding: "12px 0"
+    },
     search: {
-        padding: '8px 12px',
-        backgroundColor: theme.colors.games.form.search.background,
-        color: theme.colors.games.form.search.foreground,
-        cursor: 'pointer',
-        width: '200px',
+        padding: "8px 12px",
+        border: "1px solid #ccc",
+        borderRadius: "7px",
+        cursor: "pointer",
+        width: 'auto',
 
-        '&:hover': {
-            backgroundColor: theme.colors.games.form.search.hover.background,
-            color: theme.colors.games.form.search.hover.foreground,
+        "&:hover": {
+            background: "#560BAD",
+            color: "#fff"
         }
+    },
+    save: {
+        padding: "8px 12px",
     },
     cognitiveResult: {
         display: 'flex',
@@ -77,6 +87,7 @@ export const GameFormStyles = createUseStyles((theme: any) => ({
         color: theme.colors.games.form.search.foreground,
         fontSize: '23px',
         border: 'none',
+        borderRadius: '5px',
 
         '&:hover': {
             backgroundColor: theme.colors.games.form.search.hover.background,
