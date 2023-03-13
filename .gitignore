@@ -383,3 +383,8 @@ src/frontend/gamesclient/.vscode/settings.json
 /src/backend/Lemoncode.Azure.Console/obj/**
 /src/backend/Lemoncode.Azure.Models/obj/**
 /src/backend/Lemoncode.Azure.Models/obj/**
+/src/backend/Lemoncode.Azure.Api/Properties/PublishProfiles/lemoncode-azure-api - Web Deploy.pubxml
+/src/backend/Lemoncode.Azure.Models/bin/Release/net6.0/Lemoncode.Azure.Models.pdb
+/src/backend/Lemoncode.Azure.Models/bin/Release/net6.0/Lemoncode.Azure.Models.dll
+/src/backend/Lemoncode.Azure.Models/obj/Release/net6.0/refint/Lemoncode.Azure.Models.dll
+/src/backend/Lemoncode.Azure.Models/obj/Release/net6.0/ref/Lemoncode.Azure.Models.dll
