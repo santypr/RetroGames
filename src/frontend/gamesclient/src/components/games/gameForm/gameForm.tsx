@@ -5,6 +5,8 @@ import { createGameAction } from "../../../redux/actions/games";
 import RatingService from "../../../services/signalr";
 import { IGame } from "../../../models/IGame";
 import { useAppDispatch } from "../../../redux/hooks";
+import { Route, useNavigate } from "react-router-dom";
+import { routeUrls } from "../../../constants";
 
 export const GameForm = () => {
     const dispatch = useAppDispatch();
@@ -17,6 +19,7 @@ export const GameForm = () => {
     const [searchResult, setSearchResult] = useState<any>(null);
     const [descriptionIndex, setDescriptionIndex] = useState(0);
     const [thumbnailIndex, setThumbnailIndex] = useState(0);
+    const navigate = useNavigate();
 
     const onChangeTitle = (ev: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(ev.target.value);
@@ -31,6 +34,7 @@ export const GameForm = () => {
         console.log('save');
         var game: IGame = { title: title, info: description, posterUrl: thumbnailUrl, rating: 0, genre: 'Action', ageGroup: "0", downloadUrl: '' };
         dispatch(createGameAction(game));
+        navigate(routeUrls.HOME);
     }
 
     const handlePrevDescription = () => {
@@ -73,6 +77,8 @@ export const GameForm = () => {
         const jsonResult = JSON.parse(result);
         console.log(jsonResult.WebPages.Value);
         setSearchResult(jsonResult);
+        var audio = new Audio('/Hadouken.mp3');
+        audio.play();
     })
 
     useEffect(() => {
@@ -81,18 +87,6 @@ export const GameForm = () => {
             setThumbnailUrl(searchResult.Images.Value[thumbnailIndex].ThumbnailUrl);
         }
     }, [searchResult, descriptionIndex, thumbnailIndex])
-
-    // useEffect(() => {
-    //     // if (searchResult) {
-    //         setDescription(searchResult?.WebPages.Value[descriptionIndex].Snippet);
-    //     // }
-    // }, [descriptionIndex])
-
-    // useEffect(() => {
-    //     // if (searchResult) {
-    //         setThumbnailUrl(searchResult?.Images.Value[thumbnailIndex].ThumbnailUrl);
-    //     // }
-    // }, [thumbnailIndex]);
 
     const descriptionPagination =
         searchResult ?
